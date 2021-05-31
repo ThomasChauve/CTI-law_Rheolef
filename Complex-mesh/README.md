@@ -35,9 +35,11 @@ You can directly use [Neper](https://neper.info/) to visualized the mesh. It is 
 ## Mesh to [rheolef](https://www-ljk.imag.fr/membres/Pierre.Saramito/rheolef/html/index.html)
 
 To be taken as input in [rheolef](https://www-ljk.imag.fr/membres/Pierre.Saramito/rheolef/html/index.html) the mesh need to be processed.
+
 `msh2geo filtered.msh > filtered_rheolef.geo`
 
 **Notes**
 1. All this seems to be ok
 2. Cannot open `filtered_rheolef.geo` using [gmsh](https://gmsh.info/).
-2. I think I still nead to defined the external surfaces used for loading, free surface or fixe point. 
+3. I think I still nead to defined the external surfaces used for loading, free surface or fixe point.
+4. For now the orientation are strored within the mesh.
