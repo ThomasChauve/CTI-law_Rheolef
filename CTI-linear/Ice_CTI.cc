@@ -54,7 +54,8 @@ int main(int argc, char**argv) {
     Float pi = acos(-1.0);
     Float eta12= 1.0;
     Float alpha= 1.0;
-    Float beta= 0.001;
+    Float beta= 1.0;
+    Float incomp = 10e3;
     // physical constant for anisotropy tensor in crystal reference frame
 
     //Define velocity, deformation rate and stress fields	  
@@ -69,7 +70,7 @@ int main(int argc, char**argv) {
     
     //Define compressing force
     point f(0, 0, 0);
-    f[1] = 0.0;
+    f[1] = 1.0;
 
     //Define crystal orientation for the two domains
     field orient(Vh);
@@ -101,38 +102,44 @@ int main(int argc, char**argv) {
   trial lambda(Th); test tau(Th);                       // For stress calculation
   integrate_option iopt;                                // Quadrature type for stress calculation
   iopt.invert = true;
-  form inv_gh = integrate(ddot(lambda,tau), iopt);
-  form mt = integrate(ddot(lambda,tau));
+  //form inv_gh = integrate(ddot(lambda,tau), iopt);
+  //form mt = integrate(ddot(lambda,tau));
 
   //Define identity matrix
   tensor I = tensor::eye(d);
 
+
   //Define quadrature type for summations and averaging through integrate function
-  quadrature_option_type qopt;
-  qopt.set_family(quadrature_option_type::gauss);
-  qopt.set_order(1);
+  //quadrature_option_type qopt;
+  //qopt.set_family(quadrature_option_type::gauss);
+  //qopt.set_order(1);
 
 
   //Define boundary conditions
-  uh[1]["Bottom"] = 0.0;                //y-velocity of bottom bndy = 0
-  uh["FixedPoint1"] = 0.0;               //velocity of bottom-left corner = 0
-  uh["FixedPoint2"] = 0.0;		// Other corner
+  uh[1]["bottom"] = 0.0;                //y-velocity of bottom bndy = 0
+  uh["left_bottom_front"] = 0.0;               //velocity of bottom-left corner = 0
 //--------------------------------------------------------------------------------------------
 //Solving for the velocity field
 
 
-  field lh        = integrate (dot(f, v));
+  field lh        = integrate (omega["top"],dot(f, v));
 
-  form  a         = integrate ( 2.0*eta12*ddot(D(u), D(v)));
-			     //+  2.0*eta12*ddot(2.0*(alpha + beta)*M - (2.0/3.0*(alpha-1.0)*I)*tr(ddot(M, D(u))), D(v)); 
-			     //+  2.0*eta12*ddot((beta+1.0)*(ddot(M, D(u)) + ddot(D(u), M)), D(v)) );
+  form  a         = integrate ( 2.0*eta12*ddot(D(u), D(v))
+			     //+  2.0*eta12*tr(M*D(u))*(2.0*(alpha - beta)*ddot(M,D(v)) - 2.0/3.0*(alpha-1.0)*div(v)) 
+			     //+  2.0*eta12*(beta-1.0)*ddot(M*D(u) + D(u)*M, D(v)) 
+           + incomp*div(u)*div(v)
+           );
 
+  solver_option sopt;
+  sopt.iterative=false;
+
+  //solver sa (a.uu(),sopt);
   solver sa (a.uu());
   uh.set_u()      = sa.solve (lh.u() - a.ub()*uh.b());
   varep_h = interpolate(Th, D(uh));	
 
 
 //Outputs:
-  dout << catchmark("M") << M;
+  dout << catchmark("u") << uh;
   //dout << catchmark("uh") << varep_h;
 }
