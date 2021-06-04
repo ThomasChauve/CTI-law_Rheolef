@@ -38,6 +38,7 @@ using namespace std;
 int main(int argc, char**argv) {
     environment rheolef(argc, argv);
     geo omega (argv[1]); // Mesh grid
+    //space Xh (omega, argv[2], "vector");
     space Xh = embankment_space(omega, argv[2]); // Space for uh
     string grad_approx = "P" + itos(Xh.degree()-1) + "d";	// Polyn. degree for grad approx (losing 1 degree wrt to uh polyn
     space Vh (omega, grad_approx, "vector");     // Space for the orientation vector
@@ -45,6 +46,11 @@ int main(int argc, char**argv) {
     space Sh (omega, grad_approx);     		 // Space for scalar fields
     size_t d = omega.dimension();		 // Finds automatically the dimension of the domain omega and calls it d (should be 3 here)
 	
+    // Block the surface
+    Xh[d-1].block("bottom");
+    if (d == 3) Xh.block("left_bottom_front");
+    else        Xh.block("left_bottom");
+
     //Set Input/output directory and files names------------------------------------ 
     string output_dir   = (argc > 3) ? argv[3] : "";
     string test_file    = (argc > 4) ? output_dir + argv[4] : "test";
