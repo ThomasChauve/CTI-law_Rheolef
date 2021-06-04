@@ -70,7 +70,7 @@ int main(int argc, char**argv) {
     
     //Define compressing force
     point f(0, 0, 0);
-    f[1] = 1.0;
+    f[d-1] = -1.0;
 
     //Define crystal orientation for the two domains
     field orient(Vh);
