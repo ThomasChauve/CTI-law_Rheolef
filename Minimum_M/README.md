@@ -33,7 +33,7 @@ M[2,0] = 8;
 
 ![Alt Text](M_para.gif)
 
-I do not explained the velue when I open `M` with paraview.
+I do not understand the value observed in paraview for `M`.
 
 Open the file : `field output/M.field`
 
@@ -42,9 +42,7 @@ Open the file : `field output/M.field`
 - The component 4 equal 6
 - the components 2/5/6/7/8 equal 0
 
-```{warning}
-It does not make any sense to me. Do you have any ideas ?
-```
+:warning: It does not make any sense to me. Do you have any ideas ?
 
 ## Compilation
 First you should compile run the make file :
