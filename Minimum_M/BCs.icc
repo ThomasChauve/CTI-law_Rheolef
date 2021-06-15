@@ -1,0 +1,6 @@
+space embankment_space ( const geo & omega , string approx ) {
+	space Xh (omega , approx , "vector");
+	//Xh[1].block("bottom");
+	//Xh.block("left_bottom_front");
+	return Xh ;
+}

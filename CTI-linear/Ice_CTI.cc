@@ -60,7 +60,7 @@ int main(int argc, char**argv) {
     Float pi = acos(-1.0);
     Float eta12= 1.0;
     Float alpha= 1.0;
-    Float beta= 1.0;
+    Float beta= 0.04;
     Float incomp = 10e3;
     // physical constant for anisotropy tensor in crystal reference frame
 
@@ -131,8 +131,8 @@ int main(int argc, char**argv) {
   field lh        = integrate (omega["top"],dot(f, v));
 
   form  a         = integrate ( 2.0*eta12*ddot(D(u), D(v))
-			     //+  2.0*eta12*tr(M*D(u))*(2.0*(alpha - beta)*ddot(M,D(v)) - 2.0/3.0*(alpha-1.0)*div(v)) 
-			     //+  2.0*eta12*(beta-1.0)*ddot(M*D(u) + D(u)*M, D(v)) 
+			     +  2.0*eta12*tr(M*D(u))*(2.0*(alpha - beta)*ddot(M,D(v)) - 2.0/3.0*(alpha-1.0)*div(v)) 
+			     +  2.0*eta12*(beta-1.0)*ddot(M*D(u) + D(u)*M, D(v)) 
            + incomp*div(u)*div(v)
            );
 
@@ -146,6 +146,7 @@ int main(int argc, char**argv) {
 
 
 //Outputs:
-  dout << catchmark("u") << uh;
+  //dout << catchmark("u") << uh;
+  dout << catchmark("M") << M;
   //dout << catchmark("uh") << varep_h;
 }

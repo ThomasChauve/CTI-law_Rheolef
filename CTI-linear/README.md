@@ -2,6 +2,14 @@
 
 Detail can be found in Mansuy 2001 \[6.3.3\] or Burr 2017 \[1.2.1.4\]
 
+'''{note}
+The equation does go through with $\alpha$ different than $\beta$
+'''
+
+'''{warning}
+`M` is not contruct properly
+'''
+
 ## Equations
 
 This equation is link to the crystal coordinate system :
@@ -10,7 +18,7 @@ This equation is link to the crystal coordinate system :
 
 ### Linear algebric formulation
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\sigma=2\eta_{12}\left[\dot{\varepsilon}&plus;\left[2(\alpha&plus;\beta)M-\frac{2}{3}(\alpha-1)I&space;\right]Tr(M\dot{\varepsilon})&plus;(\beta-1)(M\dot{\varepsilon}&plus;\dot{\varepsilon}M)&space;\right]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\sigma=2\eta_{12}\left[\dot{\varepsilon}&plus;\left[2(\alpha&plus;\beta)M-\frac{2}{3}(\alpha-1)I&space;\right]Tr(M\dot{\varepsilon})&plus;(\beta-1)(M\dot{\varepsilon}&plus;\dot{\varepsilon}M)&space;\right]" title="\sigma=2\eta_{12}\left[\dot{\varepsilon}+\left[2(\alpha+\beta)M-\frac{2}{3}(\alpha-1)I \right]Tr(M\dot{\varepsilon})+(\beta-1)(M\dot{\varepsilon}+\dot{\varepsilon}M) \right]" /></a>
+<a href="https://www.codecogs.com/eqnedit.php?latex=\sigma=2\eta_{12}\left[\dot{\varepsilon}&plus;\left[2(\alpha&minus;\beta)M-\frac{2}{3}(\alpha-1)I&space;\right]Tr(M\dot{\varepsilon})&plus;(\beta-1)(M\dot{\varepsilon}&plus;\dot{\varepsilon}M)&space;\right]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\sigma=2\eta_{12}\left[\dot{\varepsilon}&plus;\left[2(\alpha&plus;\beta)M-\frac{2}{3}(\alpha-1)I&space;\right]Tr(M\dot{\varepsilon})&plus;(\beta-1)(M\dot{\varepsilon}&plus;\dot{\varepsilon}M)&space;\right]" title="\sigma=2\eta_{12}\left[\dot{\varepsilon}+\left[2(\alpha+\beta)M-\frac{2}{3}(\alpha-1)I \right]Tr(M\dot{\varepsilon})+(\beta-1)(M\dot{\varepsilon}+\dot{\varepsilon}M) \right]" /></a>
 
 ### Linear case
 
