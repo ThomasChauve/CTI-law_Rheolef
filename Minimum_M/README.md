@@ -1,4 +1,4 @@
-# Compute a Tensor $M=c \otimes c$
+# Compute a Tensor <img src="https://latex.codecogs.com/svg.image?M&space;=&space;c&space;\times&space;c" title="M = c \times c" />
 
 The aim of this folder is to learn how to build $M=c \otimes c$
 
